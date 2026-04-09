@@ -1,6 +1,6 @@
 {
   "name": "doclens",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Framework-agnostic universal document viewer with search, highlight, zoom, and deep customization. Supports PDF, XLSX, CSV, PPTX, DOCX, XML, JSON, HTML, Markdown, images, video, audio, and plain text.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -20,8 +20,21 @@
     "./styles": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amit641/doclens.git"
+  },
+  "homepage": "https://amit641.github.io/doclens/",
+  "bugs": {
+    "url": "https://github.com/amit641/doclens/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
