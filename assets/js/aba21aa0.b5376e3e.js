@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkusers_amit_desktop_interview_preparation_doclens_docs=globalThis.webpackChunkusers_amit_desktop_interview_preparation_doclens_docs||[]).push([[742],{7093(e){e.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"default"}')}}]);
