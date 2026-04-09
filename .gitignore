@@ -3,3 +3,6 @@ dist/
 *.tsbuildinfo
 .DS_Store
 demo/public/Separation_Release_of_Claims-_Amit_Chowdhary.pdf
+docs/.docusaurus/
+docs/build/
+docs/node_modules/
