@@ -38,6 +38,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
     "preview": "vite preview",
     "lint": "tsc --noEmit",
     "demo": "vite --config demo/vite.config.ts"
