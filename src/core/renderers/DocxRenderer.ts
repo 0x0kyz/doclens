@@ -7,15 +7,7 @@ export class DocxRenderer extends BaseRenderer {
   async render(ctx: RendererContext): Promise<void> {
     await super.render(ctx);
 
-    let mammoth: any;
-    try {
-      const mod = 'mammoth';
-      mammoth = await import(/* @vite-ignore */ mod);
-    } catch {
-      const cdn = 'https://esm.sh/mammoth@1.8.0';
-      mammoth = await import(/* @vite-ignore */ cdn);
-    }
-    if (mammoth.default) mammoth = mammoth.default;
+    const mammoth = await import('mammoth').then(m => m.default ?? m);
 
     const result = await mammoth.convertToHtml(
       { arrayBuffer: ctx.data },

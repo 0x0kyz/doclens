@@ -13,29 +13,11 @@ export interface OCRResult {
 let tesseractModule: any = null;
 let workerInstance: any = null;
 
-const CDN_URL = 'https://esm.sh/tesseract.js@7';
-
 async function loadTesseract(): Promise<any> {
   if (tesseractModule) return tesseractModule;
 
-  // Try npm-installed package first
-  try {
-    tesseractModule = await import('tesseract.js');
-    return tesseractModule;
-  } catch {
-    // Not installed locally — fall back to CDN
-  }
-
-  try {
-    tesseractModule = await import(/* @vite-ignore */ CDN_URL);
-    return tesseractModule;
-  } catch {
-    // CDN also unavailable
-  }
-
-  throw new Error(
-    'tesseract.js could not be loaded. Install it with: npm install tesseract.js',
-  );
+  tesseractModule = await import('tesseract.js');
+  return tesseractModule;
 }
 
 async function getWorker(): Promise<any> {

@@ -11,15 +11,7 @@ export class MarkdownRenderer extends BaseRenderer {
     let html: string;
 
     try {
-      let markedModule: any;
-      try {
-        const mod = 'marked';
-        markedModule = await import(/* @vite-ignore */ mod);
-      } catch {
-        const cdn = 'https://esm.sh/marked@15.0.0';
-        markedModule = await import(/* @vite-ignore */ cdn);
-      }
-      const marked = markedModule.marked ?? markedModule.default?.marked ?? markedModule.default;
+      const marked = (await import('marked')).marked;
       html = await marked(text, {
         gfm: true,
         breaks: false,

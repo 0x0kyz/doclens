@@ -52,15 +52,7 @@ export class SpreadsheetRenderer extends BaseRenderer {
 
   private async parseCSV(data: ArrayBuffer): Promise<SheetData[]> {
     try {
-      let Papa: any;
-      try {
-        const mod = 'papaparse';
-        Papa = await import(/* @vite-ignore */ mod);
-      } catch {
-        const cdn = 'https://esm.sh/papaparse@5.4.1';
-        Papa = await import(/* @vite-ignore */ cdn);
-      }
-      if (Papa.default) Papa = Papa.default;
+      const Papa = await import('papaparse').then(m => m.default ?? m);
       const text = new TextDecoder('utf-8').decode(data);
       const result = Papa.parse(text, { header: false });
 
@@ -70,8 +62,8 @@ export class SpreadsheetRenderer extends BaseRenderer {
 
       if (allRows.length === 0) return [{ name: 'Sheet1', headers: [], rows: [] }];
 
-      const headers = allRows[0];
-      const rows = allRows.slice(1);
+      const headers = allRows[0] as string[];
+      const rows = allRows.slice(1) as string[][];
 
       return [{ name: 'Sheet1', headers, rows }];
     } catch {
@@ -93,15 +85,7 @@ export class SpreadsheetRenderer extends BaseRenderer {
 
   private async parseExcel(data: ArrayBuffer): Promise<SheetData[]> {
     try {
-      let XLSX: any;
-      try {
-        const mod = 'xlsx';
-        XLSX = await import(/* @vite-ignore */ mod);
-      } catch {
-        const cdn = 'https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs';
-        XLSX = await import(/* @vite-ignore */ cdn);
-      }
-      if (XLSX.default) XLSX = XLSX.default;
+      const XLSX = await import('xlsx').then(m => m.default ?? m);
       const workbook = XLSX.read(data, { type: 'array' });
 
       return workbook.SheetNames.map((name: string) => {
