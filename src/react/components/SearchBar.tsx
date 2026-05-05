@@ -9,7 +9,7 @@ export interface SearchBarProps {
 export function SearchBar({ className, placeholder = 'Search...' }: SearchBarProps) {
   const { state, actions } = useDocViewerContext();
   const inputRef = useRef<HTMLInputElement>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
